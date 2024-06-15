@@ -6,7 +6,7 @@
 from flask import Flask
 app = Flask(__name__)
 
-import hammer.settings as settings
+import courthouse.settings as settings
 app.config['SQLALCHEMY_DATABASE_URI'] = settings.DB_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = settings.SECRET_KEY
@@ -32,10 +32,10 @@ app.config['CELERY_BROKER_URL'] = settings.BROKER_URI
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
-from hammer.models import db
+from courthouse.models import db
 db.app = app
 db.init_app(app)
 
-import hammer.template_filters # registers template filters
+import courthouse.template_filters # registers template filters
 
-import hammer.controllers # registers controllers
+import courthouse.controllers # registers controllers

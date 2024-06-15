@@ -5,7 +5,7 @@ in the `master` branch.
 
 ## Setup
 
-As with Gavel, the easiest way to get started hacking on Hammer is to use 
+As with Gavel, the easiest way to get started hacking on Courthouse is to use 
 [Vagrant][vagrant] and run everything inside a virtual machine.
 
 Please contact `sampoder@calhacks.io` for additional help.
@@ -35,33 +35,33 @@ vagrant ssh
 **Note: the rest of the commands in this section are meant to be run _inside
 the VM_, not on the host machine.**
 
-The project directory gets synchronized to `/hammer` inside the VM. Once you're
-SSHed into the box, install Hammer's dependencies. You should only need to do
-this once, unless Hammer's dependencies change:
+The project directory gets synchronized to `/courthouse` inside the VM. Once you're
+SSHed into the box, install Courthouse's dependencies. You should only need to do
+this once, unless Courthouse's dependencies change:
 
 ```bash
-cd /hammer
+cd /courthouse
 virtualenv env
 source ./env/bin/activate
 pip install -r requirements.txt
 ```
 
-Next, set up Hammer. You should only need to do this once, unless Hammer's config
-options change or Hammer's database schema changes:
+Next, set up Courthouse. You should only need to do this once, unless Courthouse's config
+options change or Courthouse's database schema changes:
 
 ```bash
 cp config.vagrant.yaml config.yaml # set good defaults
 python initialize.py
 ```
 
-Finally, you're ready to run Hammer:
+Finally, you're ready to run Courthouse:
 
 ```bash
 DEBUG=true python runserver.py
 ```
 
 Now, on your local machine, you should be able to navigate to
-`http://localhost:5000/` and see Hammer running! You should be able to go to
+`http://localhost:5000/` and see Courthouse running! You should be able to go to
 `http://localhost:5000/admin` and login with the username "admin" with the
 password "admin".
 
@@ -69,7 +69,7 @@ If you'd like to enable sending emails, you'll also need to run a celery worker
 with:
 
 ```bash
-celery -A hammer:celery worker
+celery -A courthouse:celery worker
 ```
 
 **While developing, you should keep `vagrant rsync-auto` running on the host
@@ -81,11 +81,11 @@ automatically restart (because of the debug flag).
 
 * While developing, it's helpful to set the environment variable `DEBUG=true`
 
-* If Hammer's database schema is changed or if the database gets messed up in
+* If Courthouse's database schema is changed or if the database gets messed up in
   any way, you can reset everything by running (in the Vagrant VM):
 
     ```bash
-    sudo su postgres -c "dropdb hammer && createdb hammer"
+    sudo su postgres -c "dropdb courthouse && createdb courthouse"
     python initialize.py
     ```
 

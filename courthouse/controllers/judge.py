@@ -1,9 +1,9 @@
-from hammer import app
-from hammer.models import *
-from hammer.constants import *
-import hammer.settings as settings
-import hammer.utils as utils
-import hammer.crowd_bt as crowd_bt
+from courthouse import app
+from courthouse.models import *
+from courthouse.constants import *
+import courthouse.settings as settings
+import courthouse.utils as utils
+import courthouse.crowd_bt as crowd_bt
 from flask import (
     redirect,
     render_template,
@@ -20,10 +20,7 @@ def requires_open(redirect_to):
         @wraps(f)
         def decorated(*args, **kwargs):
             annotator = get_current_annotator()
-            if Setting.value_of(SETTING_WAVE) != annotator.wave or Setting.value_of(SETTING_WAVE) == 0:
-                return redirect(url_for(redirect_to))
-            else:
-                return f(*args, **kwargs)
+            return f(*args, **kwargs)
         return decorated
     return decorator
 
@@ -49,17 +46,6 @@ def index():
             content=utils.render_markdown(settings.LOGGED_OUT_MESSAGE)
         )
     else:
-        if Setting.value_of(SETTING_WAVE) == 0:
-            return render_template(
-                'closed.html',
-                content=utils.render_markdown(settings.CLOSED_MESSAGE)
-            )
-        if Setting.value_of(SETTING_WAVE) != annotator.wave:
-            return render_template(
-                'presenting.html',
-                content=utils.render_markdown(settings.PRESENTING_MESSAGE or constants.DEFAULT_PRESENTING_MESSAGE),
-                annotator=get_current_annotator()
-            )
         if not annotator.active:
             return render_template(
                 'disabled.html',
@@ -173,12 +159,13 @@ def preferred_items(annotator):
     items = []
     ignored_ids = {i.id for i in annotator.ignore}
 
+    # TODO: update this to only get teams on the same floor
     if ignored_ids:
         available_items = Item.query.filter(
-            (Item.active == True) & (Item.wave != Setting.value_of(SETTING_WAVE)) & (~Item.id.in_(ignored_ids))
+            (Item.active == True) & (Item.floor == annotator.floor) & (~Item.id.in_(ignored_ids))
         ).all()
     else:
-        available_items = Item.query.filter((Item.active == True) & (Item.wave != Setting.value_of(SETTING_WAVE))).all()
+        available_items = Item.query.filter((Item.active == True) & (Item.floor == annotator.floor)).all()
 
     prioritized_items = [i for i in available_items if i.prioritized]
 

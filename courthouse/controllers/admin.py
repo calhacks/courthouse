@@ -1,8 +1,8 @@
-from hammer import app
-from hammer.models import *
-from hammer.constants import *
-import hammer.settings as settings
-import hammer.utils as utils
+from courthouse import app
+from courthouse.models import *
+from courthouse.constants import *
+import courthouse.settings as settings
+import courthouse.utils as utils
 from flask import (
     redirect,
     render_template,
@@ -35,8 +35,6 @@ def admin():
         for i in a.ignore:
             if a.id not in viewed[i.id]:
                 skipped[i.id] = skipped.get(i.id, 0) + 1
-    # settings
-    setting_wave = Setting.value_of(SETTING_WAVE)
     return render_template(
         'admin.html',
         annotators=annotators,
@@ -44,8 +42,7 @@ def admin():
         item_counts=item_counts,
         skipped=skipped,
         items=items,
-        votes=len(decisions),
-        setting_wave=setting_wave,
+        votes=len(decisions)
     )
 
 @app.route('/admin/item', methods=['POST'])
@@ -189,10 +186,6 @@ def annotator():
 @utils.requires_auth
 def setting():
     key = request.form['key']
-    if key == 'wave':
-        new_value = request.form['value']
-        Setting.set(SETTING_WAVE, int(new_value))
-        db.session.commit()
     return redirect(url_for('admin'))
 
 @app.route('/admin/item/<item_id>/')

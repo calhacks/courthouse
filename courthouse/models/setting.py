@@ -1,4 +1,4 @@
-from hammer.models import db
+from courthouse.models import db
 from sqlalchemy.orm.exc import NoResultFound
 
 class Setting(db.Model):

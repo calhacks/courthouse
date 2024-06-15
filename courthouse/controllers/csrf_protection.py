@@ -1,5 +1,5 @@
-from hammer import app
-import hammer.utils as utils
+from courthouse import app
+import courthouse.utils as utils
 from flask import abort, request, session
 
 @app.before_request

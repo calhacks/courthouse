@@ -1,4 +1,4 @@
-from hammer.models import db
+from courthouse.models import db
 from datetime import datetime
 
 class Decision(db.Model):

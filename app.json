@@ -24,9 +24,9 @@
         "IGNORE_CONFIG_FILE": "true"
     },
     "keywords": [
-        "hammer",
+        "courthouse",
         "python",
         "flask"
     ],
-    "name": "Hammer (Cal Hacks)"
+    "name": "Courthouse (Cal Hacks)"
 }

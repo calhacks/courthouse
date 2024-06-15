@@ -1,4 +1,4 @@
-from hammer import app
+from courthouse import app
 from humanize import naturaltime
 
 @app.template_filter('utcdatetime_local')

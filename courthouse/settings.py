@@ -1,4 +1,4 @@
-import hammer.constants as constants
+import courthouse.constants as constants
 import os
 import yaml
 
@@ -69,14 +69,13 @@ c = Config(CONFIG_FILE)
 SERVER_NAME =          c.get('server_name',     'SERVER_NAME',               default=None)
 PROXY =          _bool(c.get('proxy',           'PROXY',                     default=False))
 ADMIN_PASSWORD =       c.get('admin_password',  'ADMIN_PASSWORD')
-DB_URI = _postgres_uri(c.get('db_uri',          ['DATABASE_URL', 'DB_URI'],  default='postgresql://localhost/hammer'))
+DB_URI = _postgres_uri(c.get('db_uri',          ['DATABASE_URL', 'DB_URI'],  default='postgresql://localhost/courthouse'))
 BROKER_URI =           c.get('broker_uri',      ['REDIS_URL', 'BROKER_URI'], default='redis://localhost:6379/0')
 SECRET_KEY =           c.get('secret_key',      'SECRET_KEY')
 MIN_VIEWS =        int(c.get('min_views',       'MIN_VIEWS',                 default=2))
 TIMEOUT =        float(c.get('timeout',         'TIMEOUT',                   default=5.0)) # in minutes
 WELCOME_MESSAGE =      c.get('welcome_message',                              default=constants.DEFAULT_WELCOME_MESSAGE)
 CLOSED_MESSAGE =       c.get('closed_message',                               default=constants.DEFAULT_CLOSED_MESSAGE)
-PRESENTING_MESSAGE =   c.get('presenting_message',                           default=constants.DEFAULT_PRESENTING_MESSAGE)
 DISABLED_MESSAGE =     c.get('disabled_message',                             default=constants.DEFAULT_DISABLED_MESSAGE)
 LOGGED_OUT_MESSAGE =   c.get('logged_out_message',                           default=constants.DEFAULT_LOGGED_OUT_MESSAGE)
 WAIT_MESSAGE =         c.get('wait_message',                                 default=constants.DEFAULT_WAIT_MESSAGE)

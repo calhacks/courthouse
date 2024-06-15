@@ -1,4 +1,4 @@
-from hammer import app
+from courthouse import app
 from flask import render_template
 
 @app.errorhandler(404)

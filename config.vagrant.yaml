@@ -1,7 +1,7 @@
 # settings optimized for development in a Vagrant VM
 admin_password: admin
-secret_key: hammer
-db_uri: postgresql://localhost/hammer
+secret_key: courthouse
+db_uri: postgresql://localhost/courthouse
 disable_email: true
 email_from: '' # needs to be set to something even though email is disabled
 email_user: ''

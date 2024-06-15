@@ -4,7 +4,7 @@
 # See the included LICENSE.txt for details.
 
 if __name__ == '__main__':
-    from hammer import app
+    from courthouse import app
     import os
 
     extra_files = []

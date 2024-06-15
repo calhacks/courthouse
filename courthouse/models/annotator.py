@@ -1,6 +1,6 @@
-from hammer.models import db
-import hammer.utils as utils
-import hammer.crowd_bt as crowd_bt
+from courthouse.models import db
+import courthouse.utils as utils
+import courthouse.crowd_bt as crowd_bt
 from sqlalchemy.orm.exc import NoResultFound
 from datetime import datetime
 
@@ -13,7 +13,7 @@ class Annotator(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), nullable=False)
-    wave = db.Column(db.Integer, nullable=False)
+    floor = db.Column(db.Integer, nullable=False)
     active = db.Column(db.Boolean, default=True, nullable=False)
     read_welcome = db.Column(db.Boolean, default=False, nullable=False)
     description = db.Column(db.Text, nullable=False)
@@ -28,11 +28,11 @@ class Annotator(db.Model):
     alpha = db.Column(db.Float)
     beta = db.Column(db.Float)
 
-    def __init__(self, name, wave, email, description):
+    def __init__(self, name, floor, email, description):
         self.name = name
         self.email = email
         self.description = description
-        self.wave = int(wave)
+        self.floor = int(floor)
         self.alpha = crowd_bt.ALPHA_PRIOR
         self.beta = crowd_bt.BETA_PRIOR
         self.secret = utils.gen_secret(32)

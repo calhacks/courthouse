@@ -1,4 +1,4 @@
-import hammer.crowd_bt as crowd_bt
+import courthouse.crowd_bt as crowd_bt
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy.exc
 import psycopg2.errors
@@ -11,10 +11,10 @@ class SerializableAlchemy(SQLAlchemy):
         return super(SerializableAlchemy, self).apply_driver_hacks(app, info, options)
 db = SerializableAlchemy()
 
-from hammer.models.annotator import Annotator, ignore_table
-from hammer.models.item import Item, view_table
-from hammer.models.decision import Decision
-from hammer.models.setting import Setting
+from courthouse.models.annotator import Annotator, ignore_table
+from courthouse.models.item import Item, view_table
+from courthouse.models.decision import Decision
+from courthouse.models.setting import Setting
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql.expression import desc

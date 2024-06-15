@@ -1,7 +1,7 @@
-from hammer import celery
-import hammer.settings as settings
-import hammer.crowd_bt as crowd_bt
-import hammer.constants as constants
+from courthouse import celery
+import courthouse.settings as settings
+import courthouse.crowd_bt as crowd_bt
+import courthouse.constants as constants
 from flask import Markup, Response, request, render_template
 import markdown
 import requests

@@ -1,5 +1,5 @@
-from hammer.models import db
-import hammer.crowd_bt as crowd_bt
+from courthouse.models import db
+import courthouse.crowd_bt as crowd_bt
 from sqlalchemy.orm.exc import NoResultFound
 
 view_table = db.Table('view',
@@ -12,7 +12,7 @@ class Item(db.Model):
     name = db.Column(db.Text, nullable=False)
     location = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
-    wave = db.Column(db.Integer, nullable=False)
+    floor = db.Column(db.Integer, nullable=False)
     active = db.Column(db.Boolean, default=True, nullable=False)
     viewed = db.relationship('Annotator', secondary=view_table)
     prioritized = db.Column(db.Boolean, default=False, nullable=False)
@@ -20,10 +20,10 @@ class Item(db.Model):
     mu = db.Column(db.Float)
     sigma_sq = db.Column(db.Float)
 
-    def __init__(self, name, wave, location, description):
+    def __init__(self, name, floor, location, description):
         self.name = name
         self.location = location
-        self.wave = int(wave)
+        self.floor = int(floor)
         self.description = description
         self.mu = crowd_bt.MU_PRIOR
         self.sigma_sq = crowd_bt.SIGMA_SQ_PRIOR

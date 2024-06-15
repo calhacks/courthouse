@@ -4,5 +4,5 @@
 # See the included LICENSE.txt for details.
 
 if __name__ == '__main__':
-    from hammer.models import db
+    from courthouse.models import db
     db.create_all()
