@@ -38,8 +38,7 @@ DEFAULT_EMAIL_SUBJECT = '[IMPORTANT] Hackathon Judging Information'
 DEFAULT_EMAIL_BODY = '''
 Hi {name},
 
-Thanks for volunteering at the hackathon! We're doing judging a little
-different this year. We'll be having participants judge each others projects.
+Thanks for volunteering at the hackathon!
 
 Judging will be done using Courthouse, an online platform for expo judging built
 by the Cal Hacks team. 
