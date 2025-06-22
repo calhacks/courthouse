@@ -12,4 +12,4 @@ We recommend referring to [Gavel's documentation](https://github.com/anishathaly
 
 ## License
 
-Released under AGPLv3. See [LICENSE.txt](LICENSE.txt) for details.
+Released under AGPLv3. See [LICENSE.txt](LICENSE.txt).
